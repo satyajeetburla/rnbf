@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RNBF: Real-Time RGB-D Based Neural Barrier Functions for Safe Robotic Navigation</title>
+
+    <!-- Bulma + template CSS (already in repo) -->
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="stylesheet" href="./static/css/index.css" />
+
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/bulma-carousel.min.js"></script>
+    <script defer src="./static/js/bulma-slider.min.js"></script>
+    <script defer src="./static/js/index.js"></script>
+  </head>
+
+  <body>
+    <!-- Title -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                RNBF: Real-Time RGB-D Based Neural Barrier Functions for Safe Robotic Navigation
+              </h1>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Satyajeet Das<sup>1</sup>,</span>
+                <span class="author-block">Yifan Xue<sup>2</sup>,</span>
+                <span class="author-block">Haoming Li<sup>2</sup>,</span>
+                <span class="author-block">Nadia Figueroa<sup>2</sup></span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>University of Southern California</span> &nbsp;&nbsp;
+                <span class="author-block"><sup>2</sup>University of Pennsylvania</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- Paper -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2505.02294" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                      <span>Paper (arXiv)</span>
+                    </a>
+                  </span>
+
+                  <!-- PDF (local) -->
+                  <span class="link-block">
+                    <a href="media/paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                      <span>PDF</span>
+                    </a>
+                  </span>
+
+                  <!-- Code (placeholder) -->
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fab fa-github"></i></span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+
+                  <!-- Video anchor -->
+                  <span class="link-block">
+                    <a href="#videos" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-video"></i></span>
+                      <span>Videos</span>
+                    </a>
+                  </span>
+
+                  <!-- BibTeX anchor -->
+                  <span class="link-block">
+                    <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon"><i class="fas fa-quote-right"></i></span>
+                      <span>BibTeX</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+              <p class="is-size-5" style="margin-top: 0.75rem;">
+                Online, differentiable neural SDFs from noisy RGB-D → safe reactive navigation with SDF-based controllers (e.g., CBF-QP).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <figure>
+            <img src="media/teaser.png" alt="RNBF teaser (replace media/teaser.png)" />
+          </figure>
+          <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+            Replace <code>media/teaser.png</code> with a representative result figure (e.g., real robot setup + trajectory).
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Autonomous safe navigation in unstructured and novel environments poses significant challenges, especially when
+                environment information can only be provided through low-cost vision sensors. Although safe reactive approaches have
+                been proposed to ensure robot safety in complex environments, many base their theory off the assumption that the robot
+                has prior knowledge on obstacle locations and geometries. In this paper, we present a real-time, vision-based framework that
+                constructs continuous, first-order differentiable Signed Distance Fields (SDFs) of unknown environments entirely online, without
+                any pre-training, and is fully compatible with established SDF-based reactive controllers. To achieve robust performance
+                under practical sensing conditions, our approach explicitly accounts for noise in affordable RGB-D cameras, refining the
+                neural SDF representation online for smoother geometry and stable gradient estimates. We validate the proposed method in
+                simulation and real-world experiments using a Fetch robot.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+              <p>
+                RNBF builds a continuous, first-order differentiable neural SDF online from posed RGB-D streams and provides
+                both SDF values and gradients to standard SDF-based controllers/safety filters (demonstrated with a CBF-QP controller).
+              </p>
+              <figure style="margin-top: 1rem;">
+                <img src="media/pipeline.png" alt="RNBF pipeline (replace media/pipeline.png)" />
+                <figcaption class="has-text-grey" style="margin-top: 0.5rem;">
+                  Replace <code>media/pipeline.png</code> with your pipeline figure (e.g., the RNBF-Control block diagram).
+                </figcaption>
+              </figure>
+
+              <ul style="margin-top: 1rem;">
+                <li><b>Online neural SDF</b> (no pre-training), real-time update rate.</li>
+                <li><b>Noise-aware training</b> for smoother geometry and stable gradients under RGB-D depth noise.</li>
+                <li><b>Controller-agnostic</b>: works with any SDF-based reactive controller consuming SDF + ∇SDF.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section class="section" id="videos">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Videos</h2>
+        <p class="has-text-grey">
+          Drop your MP4s into <code>media/videos/</code> and replace the filenames below.
+          The page will automatically show them.
+        </p>
+
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <video controls playsinline muted preload="metadata" width="100%" style="border-radius: 12px;">
+              <source src="media/videos/sim_demo.mp4" type="video/mp4" />
+            </video>
+            <p class="has-text-grey is-size-7">Simulation demo (replace <code>media/videos/sim_demo.mp4</code>)</p>
+          </div>
+
+          <div class="column is-half">
+            <video controls playsinline muted preload="metadata" width="100%" style="border-radius: 12px;">
+              <source src="media/videos/real_demo.mp4" type="video/mp4" />
+            </video>
+            <p class="has-text-grey is-size-7">Real robot demo (replace <code>media/videos/real_demo.mp4</code>)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section" id="bibtex">
+      <div class="container is-max-desktop content">
+        <h2 class="title is-3">BibTeX</h2>
+        <pre><code>@article{das2025rnbf,
+  title   = {RNBF: Real-Time RGB-D Based Neural Barrier Functions for Safe Robotic Navigation},
+  author  = {Das, Satyajeet and Xue, Yifan and Li, Haoming and Figueroa, Nadia},
+  journal = {arXiv preprint arXiv:2505.02294},
+  year    = {2025}
+}</code></pre>
+        <p class="has-text-grey">
+          Contact: <a href="mailto:satyajee@usc.edu">satyajee@usc.edu</a>
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p class="has-text-grey">
+            Simple project-page template adapted from an academic project-page layout (Bulma-based).
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
