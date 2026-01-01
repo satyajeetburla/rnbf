@@ -87,7 +87,7 @@
               </div>
 
               <p class="is-size-5" style="margin-top: 0.75rem;">
-                Online, differentiable neural SDFs from noisy RGB-D → safe reactive navigation with SDF-based controllers (e.g., CBF-QP).
+                <!-- Online, differentiable neural SDFs from noisy RGB-D → safe reactive navigation with SDF-based controllers (e.g., CBF-QP). -->
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@
             <img src="media\real_world.png" alt="RNBF teaser (replace media/teaser.png)" />
           </figure>
           <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-            Replace <code>media/teaser.png</code> with a representative result figure (e.g., real robot setup + trajectory).
+           <b>Real-world experiments:</b> Shown are collision-free RNBF-CBF-QP trajectories overlaid on video frames for static (single obstacle - shape 1 & 2, and multi obstacle) and quasi-static obstacle scenarios.
           </h2>
         </div>
       </div>
@@ -134,7 +134,7 @@
     </section>
 
     <!-- Method -->
-    <section class="section">
+    <!-- <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3">Method Overview</h2>
         <div class="columns is-centered">
@@ -146,9 +146,9 @@
               </p>
               <figure style="margin-top: 1rem;">
                 <img src="media/pipeline.png" alt="RNBF pipeline (replace media/pipeline.png)" />
-                <figcaption class="has-text-grey" style="margin-top: 0.5rem;">
-                  Replace <code>media/pipeline.png</code> with your pipeline figure (e.g., the RNBF-Control block diagram).
-                </figcaption>
+                <figcaption class="has-text-grey" style="margin-top: 0.5rem;"> -->
+                  <!-- Replace <code>media/pipeline.png</code> with your pipeline figure (e.g., the RNBF-Control block diagram). -->
+                <!-- </figcaption>
               </figure>
 
               <ul style="margin-top: 1rem;">
@@ -160,50 +160,141 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+<!-- Method -->
+        <!-- Method -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>RNBF</b> is a real-time, vision-based safety framework that constructs a
+            <b>continuous, first-order differentiable neural Signed Distance Field (SDF)</b>
+            online from posed RGB-D observations. The learned SDF provides both distance values
+            and spatial gradients, enabling direct integration with
+            <b>SDF-based reactive controllers and safety filters</b>.
+            While RNBF is compatible with any controller that consumes an SDF and its gradient,
+            in this work we demonstrate its performance using a
+            <b>Control Barrier Function Quadratic Program (CBF-QP)</b>.
+          </p>
+
+          <!-- ===== Method Figure (Pipeline) ===== -->
+          <!-- Replace src with your pipeline figure path -->
+          <figure class="image" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <img src="media\Vision-based CBF_update_page-0001.jpg"
+                 alt="RNBF pipeline overview (SDF generation + reactive control)">
+            <figcaption class="has-text-grey has-text-centered"
+                        style="margin-top: 0.5rem; font-size: 0.95rem;">
+              <b>RNBF-Control pipeline.</b> The SDF generation module reconstructs a neural SDF online
+              from RGB-D input (5–15&nbsp;Hz). The reactive controller queries the SDF and its gradients
+              at higher frequency (≥&nbsp;20&nbsp;Hz) to enforce safety.
+            </figcaption>
+          </figure>
+          <!-- ===== End Method Figure ===== -->
+
+          <!-- <ul>
+            <li><b>Online neural SDF</b>: continuous SDF and gradients built online with no offline training.</li>
+            <li><b>Noise-aware learning</b>: explicitly accounts for RGB-D depth noise for smoother geometry and stable gradients.</li>
+            <li><b>Controller-agnostic safety layer</b>: works with any SDF-based reactive controller that consumes SDF + ∇SDF.</li>
+          </ul> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Effect of Depth Noise on SDF -->
+<section class="section" id="depth-noise">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Effect of Depth Noise on SDF</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Affordable RGB-D sensors introduce depth noise that can create spurious surface artifacts,
+            leading to unstable SDF gradients and unreliable reactive control. RNBF mitigates this by
+            using robust near-surface supervision (Huber loss), producing smoother reconstructions and
+            more stable gradients under noisy depth measurements.
+          </p>
+
+          <!-- ===== Depth Noise Figure Placeholder ===== -->
+          <!-- Replace src and caption with your depth-noise comparison figure (e.g., Fig. 6) -->
+          <figure class="image" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <img src="media\huberf_fin_c_page-0001.jpg"
+                 alt="Effect of depth noise on SDF reconstruction (placeholder)">
+            <figcaption class="has-text-grey has-text-centered"
+                        style="margin-top: 0.5rem; font-size: 0.95rem;">
+             Comparison of SDF reconstructions under noisy RGB-D depth inputs
+              (replace with your figure and caption). Comparison of SDF reconstructions using L1 loss & huber loss functions on depth data from an Intel RealSense
+D435i sensor. The leftmost column shows the RGB images of the scene. The second column presents reconstructions using
+the L1 loss. The remaining columns show reconstructions using the huber loss with varying δ values. Each row corresponds
+to a scene with a different camera-to-surface distance: in the first row, the wall is approximately 2 meters from the camera;
+in the second row, the racks and back wall are approximately 7 meters away; and in the third row, the closest obstacle is
+approximately 3 meters away.
+
+            </figcaption>
+          </figure>
+          <!-- ===== End Depth Noise Figure Placeholder ===== -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Videos -->
     <section class="section" id="videos">
       <div class="container is-max-desktop">
         <h2 class="title is-3">Videos</h2>
         <p class="has-text-grey">
-          Drop your MP4s into <code>media/videos/</code> and replace the filenames below.
-          The page will automatically show them.
+          <!-- Drop your MP4s into <code>media/videos/</code> and replace the filenames below.
+          The page will automatically show them. -->
         </p>
 
         <div class="columns is-centered">
           <div class="column is-half">
             <video controls playsinline muted preload="metadata" width="100%" style="border-radius: 12px;">
-              <source src="media/videos/sim_demo.mp4" type="video/mp4" />
+              <source src="media\videos\Video_SII.mp4" type="video/mp4" />
             </video>
-            <p class="has-text-grey is-size-7">Simulation demo (replace <code>media/videos/sim_demo.mp4</code>)</p>
+            <p class="has-text-grey is-size-7">RNBF Experiment Video</p>
           </div>
 
-          <div class="column is-half">
+          <!-- <div class="column is-half">
             <video controls playsinline muted preload="metadata" width="100%" style="border-radius: 12px;">
               <source src="media/videos/real_demo.mp4" type="video/mp4" />
             </video>
             <p class="has-text-grey is-size-7">Real robot demo (replace <code>media/videos/real_demo.mp4</code>)</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
 
     <!-- BibTeX -->
-    <section class="section" id="bibtex">
-      <div class="container is-max-desktop content">
-        <h2 class="title is-3">BibTeX</h2>
-        <pre><code>@article{das2025rnbf,
-  title   = {RNBF: Real-Time RGB-D Based Neural Barrier Functions for Safe Robotic Navigation},
-  author  = {Das, Satyajeet and Xue, Yifan and Li, Haoming and Figueroa, Nadia},
-  journal = {arXiv preprint arXiv:2505.02294},
-  year    = {2025}
+<!-- BibTeX -->
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@misc{das2025rnbfrealtimergbdbased,
+  title         = {RNBF: Real-Time RGB-D Based Neural Barrier Functions for Safe Robotic Navigation},
+  author        = {Satyajeet Das and Yifan Xue and Haoming Li and Nadia Figueroa},
+  year          = {2025},
+  eprint        = {2505.02294},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2505.02294}
 }</code></pre>
-        <p class="has-text-grey">
-          Contact: <a href="mailto:satyajee@usc.edu">satyajee@usc.edu</a>
-        </p>
-      </div>
-    </section>
+    <p class="has-text-grey">
+      <!-- Contact: <a href="mailto:satyajee@usc.edu">satyajee@usc.edu</a> -->
+    </p>
+  </div>
+</section>
+
 
     <footer class="footer">
       <div class="container">
